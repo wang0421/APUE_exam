@@ -4,20 +4,17 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-
-//releor
 int main(int argc, char *argv[])
 {
-    int fd = open("test_1.txt",O_RDWR );  //
+    int fd = open("test_1.txt",O_RDWR|O_CREAT|O_EXCL,0666 );  //
     if(fd == -1)
     {
-        printf("open err!\n");
+        printf("creat err!\n");
         return -1;
     }
-    char buff[20] = {0};
 
-    ssize_t s=read(fd,buff,20);
-    printf(" %s size is %d\n",buff,s);
+    write(fd,"hello!",6);
+
     return 0;
 }
 
